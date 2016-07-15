@@ -1,4 +1,10 @@
 <?php
+/**
+ * All code related to the GlotPress menu in the WordPress settings menu.
+ *
+ * @package GlotPress
+ * @since 2.2.0
+ */
 
 /**
  * Add the GlotPress admin page to the WordPress settings menu.
