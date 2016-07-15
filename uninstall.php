@@ -18,7 +18,7 @@ function gp_uninstall() {
 		define( 'GP_INC', 'gp-includes/' );
 	}
 
-	if ( !function_exists( 'gp_schema_get' ) ) {
+	if ( ! function_exists( 'gp_schema_get' ) ) {
 		include( GP_PATH . GP_INC . 'schema.php' );
 	}
 
@@ -27,7 +27,8 @@ function gp_uninstall() {
 	foreach ( $schema as $table => $sql ) {
 		$table_name = $wpdb->prefix . 'gp_' . $table;
 
-		$wpdb->query( "DROP TABLE {$table_name};" );
+		// We can't use $wpdb->prepare here as the table name is not one of the support data types.
+		$wpdb->query( "DROP TABLE {$table_name};" ); // WPCS: unprepared SQL ok.
 	}
 
 	delete_option( 'gp_db_version' );
