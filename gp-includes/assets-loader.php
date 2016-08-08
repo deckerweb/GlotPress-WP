@@ -7,19 +7,21 @@
  */
 
 /**
- * Register the GlotPress styles and load the base style sheet.
+ * Register the GlotPress styles.
  */
-function gp_styles_default() {
+function gp_register_styles() {
 	$url = gp_plugin_url( 'assets/css' );
 
+	$suffix = SCRIPT_DEBUG ? '.css' : '.min.css';
+
 	// Register our base style.
-	wp_register_style( 'gp-base', $url . '/style.css', array(), '20150717' );
+	wp_register_style( 'gp-base', $url . '/style' . $suffix, array(), '20150717' );
 
 	// Register the table sorter theme style.
-	wp_register_style( 'tablesorter-theme', $url . '/tablesorter.theme.glotpress.css', array(), '20150717' );
+	wp_register_style( 'tablesorter-theme', $url . '/tablesorter.theme.glotpress' . $suffix, array(), '20150717' );
 }
 
-add_action( 'init', 'gp_styles_default' );
+add_action( 'init', 'gp_register_styles' );
 
 /**
  * Register the GlotPress scripts.
